@@ -158,9 +158,8 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
                     popoverController.permittedArrowDirections = .any
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    let presentingVC = self.presentedViewController ?? self
-                    presentingVC.present(activityVC, animated: true)
+                DispatchQueue.main.async {
+                    self.present(activityVC, animated: true)
                 }
             }
             
