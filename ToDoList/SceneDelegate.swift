@@ -7,16 +7,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .white
-        let label = UILabel()
-        label.text = "ToDo List App Initialized"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        viewController.view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor)
-        ])
+        let viewController = TodoListRouter.createModule()
         
         window.rootViewController = UINavigationController(rootViewController: viewController)
         self.window = window
