@@ -148,13 +148,19 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
                 let activityVC = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
                 
                 if let popoverController = activityVC.popoverPresentationController {
-                    popoverController.sourceView = self.view
-                    popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-                    popoverController.permittedArrowDirections = []
+                    if let cell = self.tableView.cellForRow(at: indexPath) {
+                        popoverController.sourceView = cell
+                        popoverController.sourceRect = cell.bounds
+                    } else {
+                        popoverController.sourceView = self.view
+                        popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                    }
+                    popoverController.permittedArrowDirections = .any
                 }
                 
-                DispatchQueue.main.async {
-                    self.present(activityVC, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    let presentingVC = self.presentedViewController ?? self
+                    presentingVC.present(activityVC, animated: true)
                 }
             }
             
