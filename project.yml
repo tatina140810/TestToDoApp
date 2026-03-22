@@ -1,0 +1,28 @@
+name: ToDoList
+options:
+  bundleIdPrefix: com.tatinaios
+  deploymentTarget:
+    iOS: 15.0
+targets:
+  ToDoList:
+    type: application
+    platform: iOS
+    sources: ToDoList
+    info:
+      path: ToDoList/Info.plist
+      properties:
+        UILaunchStoryboardName: LaunchScreen
+        UIMainStoryboardFile: ""
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+    dependencies: []
+  ToDoListTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: ToDoListTests
+    dependencies:
+      - target: ToDoList
